@@ -1,0 +1,29 @@
+name: Integración y entrega continua
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NOMBRES: "Malek"
+      APELLIDOS: "Puican Ruiz"
+      EDAD: "22"
+      VERSION_PROYECTO: "3.0"
+    steps:
+      - name: Presentación
+        run: |
+          echo "Nombre: $NOMBRES"
+          echo "Apellido: $APELLIDOS"
+          echo "Edad: $EDAD"
+      - name: Datos generales
+        run: echo "carrera de ingeniería de sistemas"
+      - name: Variables de entorno secretas
+        env:
+          SECRET_USER: ${{ secrets.USER }}
+          SECRET_PASS: ${{ secrets.PASSWORD }}
+        run: |
+          echo "user: $SECRET_USER"
+          echo "password: $SECRET_PASS"
+      - name: Variables abiertas
+        run: echo "Versión de mi proyecto: $VERSION_PROYECTO"
